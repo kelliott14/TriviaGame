@@ -14,6 +14,7 @@ var answerA;
 var answerB;
 var answerC;
 var answerD;
+var selectedAnswer;
 
 //On load or reset
 function startGame(){
@@ -49,8 +50,26 @@ function answerIsCorrect(){
     
 }
 
+//Picking the wrong answer
+    function answerIsWrong(){
+        answeredWrong++
+        questionsCount++
+    }
+
 startGame()
 setQuestion()
+
+$("button").on("click", function(){
+    selectedAnswer = $(this).text();
+    
+    if(selectedAnswer == correctAnswer){
+        answerIsCorrect();
+    }else{
+        answerIsWrong();
+    }
+    console.log(answeredCorrect)
+})
+
 
 
 });
