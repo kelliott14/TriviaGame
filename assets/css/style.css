@@ -1,0 +1,16 @@
+.answerRow{
+    margin: 20px;
+}
+
+button{
+    height: 80px;
+}
+
+.scoreCard{
+    float: right;
+}
+
+.jumbotron{
+    padding: 20px;
+    
+}

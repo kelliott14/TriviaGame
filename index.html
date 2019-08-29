@@ -12,26 +12,37 @@
 <body>
     <div class="container">
         <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">Trivia Game</h1>
-                <p class="lead">Trivia question goes here</p>
+             <div class="card scoreCard" style="width: 15rem">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Correct Answers: 5 </li>
+                    <li class="list-group-item">Wrong Answers: 2 </li>
+                    <li class="list-group-item">Questions remaining: 2 </li>
+                </ul>
+            </div>
+            <h1 class="display-4">Trivia Game</h1>
+            <p class="lead">Trivia question goes here. even if it's a really really really really really long question. How much space is it taking up. Like how much space is it taking up.
+                    Trivia question goes here. even if it's a really really really really really long question. How much space is it taking up. Like how much space is it taking up.
+            </p>
+            
+        </div>
+        <div class="row answerRow">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-outline-primary btn-lg btn-block">A. Answer</button>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-outline-primary btn-lg btn-block">B. Answer</button>
             </div>
         </div>
-        <div class="row">
+        <div class="row answerRow">
             <div class="col-md-6">
-                <button type="button" class="btn btn-primary btn-lg btn-block">A. Answer</button>
+                <button type="button" class="btn btn-outline-primary btn-lg btn-block">C. Answer</button>
             </div>
             <div class="col-md-6">
-                <button type="button" class="btn btn-primary btn-lg btn-block">B. Answer</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <button type="button" class="btn btn-primary btn-lg btn-block">C. Answer</button>
-            </div>
-            <div class="col-md-6">
-                <button type="button" class="btn btn-primary btn-lg btn-block">D. Answer</button>
+                <button type="button" class="btn btn-outline-primary btn-lg btn-block">D. Answer</button>
             </div>  
+        </div>
+        <div class="row">
+            <p>timer</p>
         </div>
     </div>
 </body>
