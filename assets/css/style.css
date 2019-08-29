@@ -7,10 +7,16 @@ button{
 }
 
 .scoreCard{
-    float: right;
+    right: 200px;
+    bottom: 10px;
+    position: absolute;
 }
 
 .jumbotron{
     padding: 20px;
-    
+    position: relative;
+}
+
+.questionText{
+    width: 800px;
 }
