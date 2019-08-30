@@ -15,7 +15,24 @@ var triviaQuestions = [
         "question" : "The 2nd trivia question",
         "answer" : "The 2nd correct answer",
         "options" : ["option 2 number 1", "option 2nd number 2", "The 2nd correct answer", "option 2 number 4"]
-    }
+    },
+
+    questionThree = {
+        "question" : "The 3rd trivia question",
+        "answer" : "The 3rd correct answer",
+        "options" : ["option 2 number 3", "option 2nd number 2", "The 3rd correct answer", "option 2 number 4"]
+    },
+    questionFour = {
+        "question" : "The 4th trivia question",
+        "answer" : "The 2nd correct answer",
+        "options" : ["option 2 number 1", "option 2nd number 2", "The 2nd correct answer", "option 2 number 4"]
+    },
+
+    questionFive = {
+        "question" : "The 5th trivia question",
+        "answer" : "The 3rd correct answer",
+        "options" : ["option 2 number 3", "option 2nd number 2", "The 3rd correct answer", "option 2 number 4"]
+    },
     
 ]
 
@@ -32,13 +49,27 @@ var timerInterval;
 
 $(document).ready(function() {
 
+
+startGame();
+
 //On load or reset
 function startGame(){
+    gameRunning = false;
+    var startButton = $("<button>Start Game</button>");
+    $(startButton).addClass("startButton")
+    $(".timerCard").append(startButton);
+    $(".answerRow").hide();
+
     answeredCorrect = 0;
     answeredWrong = 0;
     questionsCount = 0;
     rounds = 0;
     timerCount = 0;
+
+    $(".startButton").on("click", function(){
+        $(".answerRow").show();
+        setQuestion();
+    });
     
 }
 
@@ -64,21 +95,11 @@ function setQuestion(){
     $("#answerDText").text(answerD)
 
     startTimer();
+    scorecardUpdate();
     }
 
 
-//Picking the correct answer
-function answerIsCorrect(){
-    answeredCorrect++
-    
-    
-}
 
-//Picking the wrong answer
-function answerIsWrong(){
-    answeredWrong++
-    questionsCount++
-}
 
 //Update scorecard
 function scorecardUpdate(){
@@ -92,41 +113,41 @@ function questionTimer(){
     var timerBar = $("<div>")
     $(timerBar).addClass("col-md-1 timerBar");
     $(".timerCard").append(timerBar);
-    $(timerBar).animate({left:"50px"}, "slow")
+    $(timerBar).animate({left:"100px"}, "slow")
     timerCount++
-    console.log(timerCount)
-    if(timerCount == 6){
+    
+    if(timerCount == 12){
+        answeredWrong++
         stopTimer();
         displayAnswer();
-        answerIsWrong();
-        scorecardUpdate();
     }
-    console.log(gameRunning)
+   
 }
 
 //Clicking an answer
-$("button").on("click", function(){
+$(".options").on("click", function(){
     selectedAnswer = $(this).text();
     
     if(selectedAnswer == correctAnswer){
-        answerIsCorrect();
-        clearInterval(timerInterval);
+        answeredCorrect++;
+        stopTimer();
     }else{
-        answerIsWrong();
-        clearInterval(timerInterval);
+        answeredWrong++;
+        stopTimer();
     }
-    displayAnswer()
-    scorecardUpdate();
+
+    displayAnswer();
     gameRunning = false;
+    
 })
 
 
-startGame()
-setQuestion()
-scorecardUpdate()
+
 
 //the answer
 function displayAnswer(){
+    questionsCount++;
+    scorecardUpdate();
     $(".timerCard").html("<h2>" + correctAnswer + "</h2>");
     rounds++
     setTimeout(function(){
@@ -136,7 +157,11 @@ function displayAnswer(){
 }
 
 function startTimer(){
+    if(gameRunning){
         timerInterval = setInterval(questionTimer, 2000); 
+    }else{
+        stopTimer();
+    }
     }
 
 
