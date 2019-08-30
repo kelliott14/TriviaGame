@@ -38,6 +38,7 @@ function startGame(){
     answeredWrong = 0;
     questionsCount = 0;
     rounds = 0;
+    timerCount = 0;
     
 }
 
@@ -45,6 +46,7 @@ function startGame(){
 function setQuestion(){
     $(".timerCard").empty();
     gameRunning = true;
+    timerCount = 0;
 
     $(".questionText").text(triviaQuestions[rounds].question);
     correctAnswer = triviaQuestions[rounds].answer;
@@ -65,13 +67,10 @@ function setQuestion(){
     }
 
 
-
-
-
 //Picking the correct answer
 function answerIsCorrect(){
     answeredCorrect++
-    questionsCount++
+    
     
 }
 
@@ -95,6 +94,14 @@ function questionTimer(){
     $(".timerCard").append(timerBar);
     $(timerBar).animate({left:"50px"}, "slow")
     timerCount++
+    console.log(timerCount)
+    if(timerCount == 6){
+        stopTimer();
+        displayAnswer();
+        answerIsWrong();
+        scorecardUpdate();
+    }
+    console.log(gameRunning)
 }
 
 //Clicking an answer
@@ -110,7 +117,6 @@ $("button").on("click", function(){
     }
     displayAnswer()
     scorecardUpdate();
-    rounds++
     gameRunning = false;
 })
 
@@ -122,17 +128,20 @@ scorecardUpdate()
 //the answer
 function displayAnswer(){
     $(".timerCard").html("<h2>" + correctAnswer + "</h2>");
+    rounds++
     setTimeout(function(){
         setQuestion();
         gameRunning = true}, 5000)
+        
 }
 
 function startTimer(){
-if (gameRunning == true){
-    timerInterval = setInterval(questionTimer, 2000);
-}else{
+        timerInterval = setInterval(questionTimer, 2000); 
+    }
+
+
+function stopTimer(){
     clearInterval(timerInterval);
-}
 }
 
 });
