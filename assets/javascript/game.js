@@ -51,14 +51,23 @@ function answerIsCorrect(){
 }
 
 //Picking the wrong answer
-    function answerIsWrong(){
-        answeredWrong++
-        questionsCount++
-    }
+function answerIsWrong(){
+    answeredWrong++
+    questionsCount++
+}
+
+//Update scorecard
+function scorecardUpdate(){
+    $("#correctAnswerText").text("Correct Answers: " + answeredCorrect);
+    $("#wrongAnswerText").text("Wrong Answers: " + answeredWrong);
+    $("#questionsRemainingText").text("Questions remaining: " + questionsCount);
+}
 
 startGame()
 setQuestion()
+scorecardUpdate()
 
+//Clicking an answer
 $("button").on("click", function(){
     selectedAnswer = $(this).text();
     
@@ -67,7 +76,9 @@ $("button").on("click", function(){
     }else{
         answerIsWrong();
     }
-    console.log(answeredCorrect)
+    
+    scorecardUpdate();
+    
 })
 
 
