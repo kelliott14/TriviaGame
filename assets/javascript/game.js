@@ -6,18 +6,18 @@ var correctAnswer;
 
 var triviaQuestions = [
     questionOne = {
-    "question" : "The trivia question",
-    "answer" : "The correct answer",
-    "options" : ["option number 1", "option number 2", "The correct answer", "option number 4"]
+        "question" : "The trivia question",
+        "answer" : "The correct answer",
+        "options" : ["option number 1", "option number 2", "The correct answer", "option number 4"]
     },
-
+    
     questionTwo = {
         "question" : "The 2nd trivia question",
         "answer" : "The 2nd correct answer",
         "options" : ["option 2 number 1", "option 2nd number 2", "The 2nd correct answer", "option 2 number 4"]
-        }
-
-    ]
+    }
+    
+]
 
 var answerA;
 var answerB;
@@ -26,6 +26,11 @@ var answerD;
 var selectedAnswer;
 
 var rounds;
+var timerCount = 0;
+var gameRunning;
+var timerInterval;
+
+$(document).ready(function() {
 
 //On load or reset
 function startGame(){
@@ -33,12 +38,14 @@ function startGame(){
     answeredWrong = 0;
     questionsCount = 0;
     rounds = 0;
+    
 }
-
-$(document).ready(function() {
 
 //Set the question
 function setQuestion(){
+    $(".timerCard").empty();
+    gameRunning = true;
+
     $(".questionText").text(triviaQuestions[rounds].question);
     correctAnswer = triviaQuestions[rounds].answer;
 
@@ -53,7 +60,7 @@ function setQuestion(){
 
     answerD = triviaQuestions[rounds].options[3];
     $("#answerDText").text(answerD)
-    }
+}
         
 //Picking the correct answer
 function answerIsCorrect(){
@@ -75,9 +82,15 @@ function scorecardUpdate(){
     $("#questionsRemainingText").text("Questions remaining: " + (triviaQuestions.length - questionsCount));
 }
 
-startGame()
-setQuestion()
-scorecardUpdate()
+//Timer during questions
+function questionTimer(){
+    var timerBar = $("<div>")
+    $(timerBar).addClass("col-md-1 timerBar");
+    $(".timerCard").append(timerBar);
+    $(timerBar).animate({left:"50px"}, "slow")
+    timerCount++
+    console.log(timerCount)
+}
 
 //Clicking an answer
 $("button").on("click", function(){
@@ -85,16 +98,33 @@ $("button").on("click", function(){
     
     if(selectedAnswer == correctAnswer){
         answerIsCorrect();
+        clearInterval(timerInterval);
     }else{
         answerIsWrong();
+        clearInterval(timerInterval);
     }
-    
+    displayAnswer()
     scorecardUpdate();
     rounds++
-    setQuestion();
-    
+    gameRunning = false;
 })
 
 
+startGame()
+setQuestion()
+scorecardUpdate()
+
+//the answer
+function displayAnswer(){
+    $(".timerCard").html("<h2>" + correctAnswer + "</h2>");
+    setTimeout(function(){
+        setQuestion();
+        gameRunning = true}, 5000)
+
+}
+
+if (gameRunning){
+timerInterval = setInterval(questionTimer, 5000);
+}
 
 });

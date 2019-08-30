@@ -20,3 +20,18 @@ button{
 .questionText{
     width: 800px;
 }
+
+.timerBar{
+    background-color: black;
+    height: 20px;
+    width: 5%;
+    float: left;
+    left: 0;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.timerCard{
+    height: 100px;
+}
