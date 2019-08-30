@@ -60,8 +60,14 @@ function setQuestion(){
 
     answerD = triviaQuestions[rounds].options[3];
     $("#answerDText").text(answerD)
-}
-        
+
+    startTimer();
+    }
+
+
+
+
+
 //Picking the correct answer
 function answerIsCorrect(){
     answeredCorrect++
@@ -89,7 +95,6 @@ function questionTimer(){
     $(".timerCard").append(timerBar);
     $(timerBar).animate({left:"50px"}, "slow")
     timerCount++
-    console.log(timerCount)
 }
 
 //Clicking an answer
@@ -120,11 +125,14 @@ function displayAnswer(){
     setTimeout(function(){
         setQuestion();
         gameRunning = true}, 5000)
-
 }
 
-if (gameRunning){
-timerInterval = setInterval(questionTimer, 5000);
+function startTimer(){
+if (gameRunning == true){
+    timerInterval = setInterval(questionTimer, 2000);
+}else{
+    clearInterval(timerInterval);
+}
 }
 
 });
