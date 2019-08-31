@@ -92,21 +92,6 @@ function setQuestion(){
         $(".questionText").text(triviaQuestions[rounds].question);
     }
 
-
-    // );
-
-    // answerA = triviaQuestions[rounds].options[0];
-    // $("#answerAText").text(answerA)
-
-    // answerB = triviaQuestions[rounds].options[1];
-    // $("#answerBText").text(answerB)
-
-    // answerC = triviaQuestions[rounds].options[2];
-    // $("#answerCText").text(answerC)
-
-    // answerD = triviaQuestions[rounds].options[3];
-    // $("#answerDText").text(answerD)
-
     startTimer();
     scorecardUpdate();
 }
@@ -134,7 +119,7 @@ function questionTimer(){
 }
 
 //Clicking an answer
-$(".optionsButtons").on("click", function(){
+$(".answerRow").on("click", ".optionsButtons", function(){
     selectedAnswer = $(this).text();
     console.log(this)
     
