@@ -10,6 +10,7 @@ button{
     right: 200px;
     bottom: 10px;
     position: absolute;
+    width: 15rem;
 }
 
 .jumbotron{
@@ -34,4 +35,29 @@ button{
 
 .timerCard{
     height: 100px;
+}
+
+#selectedAnswer{
+    background-color: red;
+    color: white;
+}
+
+#correctAnswer{
+    background-color: green;
+    color: white;
+}
+
+#endGameScorecard{
+    width: 35rem;
+    position: relative;
+    margin-left: 20%;
+    font-size: 20px
+}
+
+#FSHeader{
+    padding: 10px;
+}
+
+.startButton{
+    margin-top: 50px;
 }

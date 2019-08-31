@@ -35,6 +35,12 @@ var triviaQuestions = [
         "answer" : "The 3rd correct answer",
         "options" : ["option 2 number 3", "option 2nd number 2", "The 3rd correct answer", "option 2 number 4"]
     },
+
+    questionSix = {
+        "question" : "The 6th trivia question",
+        "answer" : "True",
+        "options" : ["True", "False"]
+    },
     
 ]
 
@@ -59,9 +65,10 @@ startGame();
 function startGame(){
     gameRunning = false;
     var startButton = $("<button>Start Game</button>");
-    $(startButton).addClass("startButton")
+    $(startButton).addClass("btn btn-outline-warning btn-lg btn-block startButton")
     $(".timerCard").append(startButton);
     $(".answerRow").hide();
+    $(".scoreCard").hide();
 
     answeredCorrect = 0;
     answeredWrong = 0;
@@ -125,13 +132,17 @@ function questionTimer(){
 
 $(".answerRow").on("click", ".optionsButtons", function(){
     selectedAnswer = $(this).text();
+    
     $(".optionsButtons").prop("disabled",true);
     
     if(selectedAnswer == correctAnswer){
         answeredCorrect++;
+        $(this).attr("id", "correctAnswer")
         stopTimer();
     }else{
         answeredWrong++;
+        $(this).attr("id", "selectedAnswer")
+
         stopTimer();
     }
 
@@ -145,10 +156,16 @@ function displayAnswer(){
     questionsCount++;
 
     if (rounds == triviaQuestions.length){
-        endgame();
+        scorecardUpdate();
+        $(".timerCard").html("<h2>The correct answer is: " + correctAnswer + "</h2>");
+        
+        setTimeout(function(){
+            endgame();
+            gameRunning = true}, 5000)
+        
     }else{
         scorecardUpdate();
-        $(".timerCard").html("<h2>" + correctAnswer + "</h2>");
+        $(".timerCard").html("<h2>The correct answer is: " + correctAnswer + "</h2>");
         
         setTimeout(function(){
             setQuestion();
@@ -173,10 +190,17 @@ function stopTimer(){
 function endgame(){
     scorecardUpdate();
 
+    $("#questionsRemainingText").text("Refresh to play again!");
     $(".answerRow").empty();
 
-    var scDiv = $(".scoreCard")
+    var scDiv = $(".scoreCard");
+    scDiv.attr("id", "endGameScorecard");
+    var scH1 = $("<h1 id='FSHeader'>Your final score:</h1>");
+
+
     $(".timerCard").html(scDiv);
+    $(scDiv).prepend(scH1);
+
     stopTimer();
     
 }
