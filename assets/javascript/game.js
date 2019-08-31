@@ -57,7 +57,7 @@ var gameRunning;
 var timerInterval;
 
 $(document).ready(function() {
-
+$(".scoreCard").hide();
 
 startGame();
 
@@ -68,7 +68,7 @@ function startGame(){
     $(startButton).addClass("btn btn-outline-warning btn-lg btn-block startButton")
     $(".timerCard").append(startButton);
     $(".answerRow").hide();
-    $(".scoreCard").hide();
+    
 
     answeredCorrect = 0;
     answeredWrong = 0;
@@ -85,6 +85,7 @@ function startGame(){
 function setQuestion(){
     $(".timerCard").empty();
     $(".answerRow").empty();
+    $(".scoreCard").show();
     gameRunning = true;
     timerCount = 0;
     
@@ -93,7 +94,7 @@ function setQuestion(){
         var qDiv = $("<button>");
         qDiv.text(triviaQuestions[rounds].options[i]);
 
-        qDiv.addClass("btn btn-outline-primary btn-lg btn-block optionsButtons");
+        qDiv.addClass("btn btn-outline-dark btn-lg btn-block optionsButtons");
         
         $(".answerRow").append(qDiv);
         correctAnswer = triviaQuestions[rounds].answer;
@@ -157,7 +158,7 @@ function displayAnswer(){
 
     if (rounds == triviaQuestions.length){
         scorecardUpdate();
-        $(".timerCard").html("<h2>The correct answer is: " + correctAnswer + "</h2>");
+        $(".timerCard").html("<h2 id='answerText'>The correct answer is: " + correctAnswer + "</h2>");
         
         setTimeout(function(){
             endgame();
@@ -165,7 +166,7 @@ function displayAnswer(){
         
     }else{
         scorecardUpdate();
-        $(".timerCard").html("<h2>The correct answer is: " + correctAnswer + "</h2>");
+        $(".timerCard").html("<h2 id='answerText'>The correct answer is: " + correctAnswer + "</h2>");
         
         setTimeout(function(){
             setQuestion();
