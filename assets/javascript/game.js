@@ -80,7 +80,8 @@ function setQuestion(){
     $(".answerRow").empty();
     gameRunning = true;
     timerCount = 0;
-
+    
+    
     for (var i = 0; i < triviaQuestions[rounds].options.length; i++){
         var qDiv = $("<button>");
         qDiv.text(triviaQuestions[rounds].options[i]);
@@ -94,6 +95,7 @@ function setQuestion(){
 
     startTimer();
     scorecardUpdate();
+    rounds++
 }
 
 //Update scorecard
@@ -121,7 +123,7 @@ function questionTimer(){
 //Clicking an answer
 $(".answerRow").on("click", ".optionsButtons", function(){
     selectedAnswer = $(this).text();
-    console.log(this)
+    
     
     if(selectedAnswer == correctAnswer){
         answeredCorrect++;
@@ -139,12 +141,18 @@ $(".answerRow").on("click", ".optionsButtons", function(){
 //the answer displays
 function displayAnswer(){
     questionsCount++;
-    scorecardUpdate();
-    $(".timerCard").html("<h2>" + correctAnswer + "</h2>");
-    rounds++
-    setTimeout(function(){
-        setQuestion();
-        gameRunning = true}, 5000)
+
+    if (rounds == triviaQuestions.length){
+        endgame();
+    }else{
+        scorecardUpdate();
+        $(".timerCard").html("<h2>" + correctAnswer + "</h2>");
+        
+        setTimeout(function(){
+            setQuestion();
+            gameRunning = true}, 5000)
+            
+    }
 }
 
 function startTimer(){
@@ -157,6 +165,18 @@ function startTimer(){
 
 function stopTimer(){
     clearInterval(timerInterval);
+}
+
+//endgame
+function endgame(){
+    scorecardUpdate();
+
+    $(".answerRow").empty();
+
+    var scDiv = $(".scoreCard")
+    $(".timerCard").html(scDiv);
+    stopTimer();
+    
 }
 
 });
