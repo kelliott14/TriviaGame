@@ -1,6 +1,5 @@
 body{
-    background-image: url(../images/background.jpg);
-    background-size: cover;
+    background-color: #A1DEFF;
 }
 
 .answerRow{
@@ -25,22 +24,29 @@ button{
 }
 
 .questionText{
-    width: 800px;
+    width: 60%;
 }
 
 .timerBar{
-    background-color: black;
+    background-color: #FFBE6B;
     height: 20px;
-    width: 100px;
+    width: 60px;
     float: left;
     left: 0;
-    margin: 0 0 0 -5px;
+    top: 0;
+    margin: 0;
     padding: 0px;
 
 }
 
 .timerCard{
     height: 100px;
+}
+
+.timerBarDiv{
+    height: 20px;
+    background-color: #B37627;
+    width: 900px;
 }
 
 #selectedAnswer{
@@ -58,7 +64,6 @@ button{
     position: relative;
     margin-left: 20%;
     font-size: 20px;
-    opacity: 0.9;
 }
 
 #FSHeader{
@@ -67,13 +72,9 @@ button{
 
 .startButton{
     margin-top: 100px;
-    /* background-color: beige; */
-}
-
-.optionsButtons{
-    /* background-color: #dcdcaf; */
+    
 }
 
 #answerText{
-    color: white;
+    color: #6B4718;
 }
