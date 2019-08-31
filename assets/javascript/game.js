@@ -77,23 +77,35 @@ function startGame(){
 //Set the question
 function setQuestion(){
     $(".timerCard").empty();
+    $(".answerRow").empty();
     gameRunning = true;
     timerCount = 0;
 
-    $(".questionText").text(triviaQuestions[rounds].question);
-    correctAnswer = triviaQuestions[rounds].answer;
+    for (var i = 0; i < triviaQuestions[rounds].options.length; i++){
+        var qDiv = $("<button>");
+        qDiv.text(triviaQuestions[rounds].options[i]);
 
-    answerA = triviaQuestions[rounds].options[0];
-    $("#answerAText").text(answerA)
+        qDiv.addClass("btn btn-outline-primary btn-lg btn-block optionsButtons");
+        
+        $(".answerRow").append(qDiv);
+        correctAnswer = triviaQuestions[rounds].answer;
+        $(".questionText").text(triviaQuestions[rounds].question);
+    }
 
-    answerB = triviaQuestions[rounds].options[1];
-    $("#answerBText").text(answerB)
 
-    answerC = triviaQuestions[rounds].options[2];
-    $("#answerCText").text(answerC)
+    // );
 
-    answerD = triviaQuestions[rounds].options[3];
-    $("#answerDText").text(answerD)
+    // answerA = triviaQuestions[rounds].options[0];
+    // $("#answerAText").text(answerA)
+
+    // answerB = triviaQuestions[rounds].options[1];
+    // $("#answerBText").text(answerB)
+
+    // answerC = triviaQuestions[rounds].options[2];
+    // $("#answerCText").text(answerC)
+
+    // answerD = triviaQuestions[rounds].options[3];
+    // $("#answerDText").text(answerD)
 
     startTimer();
     scorecardUpdate();
@@ -122,8 +134,9 @@ function questionTimer(){
 }
 
 //Clicking an answer
-$(".options").on("click", function(){
+$(".optionsButtons").on("click", function(){
     selectedAnswer = $(this).text();
+    console.log(this)
     
     if(selectedAnswer == correctAnswer){
         answeredCorrect++;
