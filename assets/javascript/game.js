@@ -91,6 +91,7 @@ function setQuestion(){
         $(".answerRow").append(qDiv);
         correctAnswer = triviaQuestions[rounds].answer;
         $(".questionText").text(triviaQuestions[rounds].question);
+        $(".optionsButtons").prop("disabled", false);
     }
 
     startTimer();
@@ -121,9 +122,10 @@ function questionTimer(){
 }
 
 //Clicking an answer
+
 $(".answerRow").on("click", ".optionsButtons", function(){
     selectedAnswer = $(this).text();
-    
+    $(".optionsButtons").prop("disabled",true);
     
     if(selectedAnswer == correctAnswer){
         answeredCorrect++;
