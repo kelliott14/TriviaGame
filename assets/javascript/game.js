@@ -1,7 +1,9 @@
+//scorecard variables
 var answeredCorrect;
 var answeredWrong;
 var questionsCount;
 
+//question variables
 var correctAnswer;
 
 var triviaQuestions = [
@@ -42,6 +44,7 @@ var answerC;
 var answerD;
 var selectedAnswer;
 
+//game variables
 var rounds;
 var timerCount = 0;
 var gameRunning;
@@ -64,13 +67,11 @@ function startGame(){
     answeredWrong = 0;
     questionsCount = 0;
     rounds = 0;
-    timerCount = 0;
 
     $(".startButton").on("click", function(){
         $(".answerRow").show();
         setQuestion();
     });
-    
 }
 
 //Set the question
@@ -96,10 +97,7 @@ function setQuestion(){
 
     startTimer();
     scorecardUpdate();
-    }
-
-
-
+}
 
 //Update scorecard
 function scorecardUpdate(){
@@ -121,7 +119,6 @@ function questionTimer(){
         stopTimer();
         displayAnswer();
     }
-   
 }
 
 //Clicking an answer
@@ -141,10 +138,7 @@ $(".options").on("click", function(){
     
 })
 
-
-
-
-//the answer
+//the answer displays
 function displayAnswer(){
     questionsCount++;
     scorecardUpdate();
@@ -153,7 +147,6 @@ function displayAnswer(){
     setTimeout(function(){
         setQuestion();
         gameRunning = true}, 5000)
-        
 }
 
 function startTimer(){
@@ -163,7 +156,6 @@ function startTimer(){
         stopTimer();
     }
     }
-
 
 function stopTimer(){
     clearInterval(timerInterval);
